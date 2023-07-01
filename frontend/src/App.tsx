@@ -5,6 +5,7 @@ import AddEvent from "./pages/AddEvent/AddEvent";
 import EventDetails from "./pages/EventDetails/EventDetails";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
+import Footer from "./components/Footer/Footer";
 import { PolybaseProvider, AuthProvider } from "@polybase/react";
 import { Polybase } from "@polybase/client";
 import { Auth } from "@polybase/auth";
@@ -15,20 +16,29 @@ const auth = new Auth();
 function App() {
   return (
     <>
-      <PolybaseProvider value={polybase}>
-        <AuthProvider auth={auth} polybase={polybase}>
-          <Router>
-            <NavBar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/explore" element={<Events />} />
-              <Route path="/add-event" element={<AddEvent />} />
-              <Route path="/explore/:id" element={<EventDetails />} />
-            </Routes>
-          </Router>
-        </AuthProvider>
-      </PolybaseProvider>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+        }}
+      >
+        <PolybaseProvider value={polybase}>
+          <AuthProvider auth={auth} polybase={polybase}>
+            <Router>
+              <NavBar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/explore" element={<Events />} />
+                <Route path="/add-event" element={<AddEvent />} />
+                <Route path="/explore/:id" element={<EventDetails />} />
+              </Routes>
+              <Footer />
+            </Router>
+          </AuthProvider>
+        </PolybaseProvider>
+      </div>
     </>
   );
 }
