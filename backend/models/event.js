@@ -43,6 +43,13 @@ const eventSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  organizer: {
+    type: String,
+    required: true,
+  },
+  organizer_email: {
+    type: String,
+  },
   domain: {
     type: String,
     enum: ["Tech", "Literature", "Art", "Music", "Dance", "Sports", "Other"],

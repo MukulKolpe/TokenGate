@@ -25,6 +25,7 @@ import {
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 import FileBase64 from "react-file-base64";
+import { useAuth } from "@polybase/react";
 import { LoadScript, StandaloneSearchBox } from "@react-google-maps/api";
 
 const obj = {
@@ -35,6 +36,7 @@ const obj = {
   datetime: "",
   location: "",
   tickets: 0,
+  organizer: "",
   prize: 0,
   lat: 0,
   lng: 0,
@@ -44,6 +46,7 @@ console.log(obj);
 const Form1 = () => {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
+  const { auth, state } = useAuth();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -52,6 +55,8 @@ const Form1 = () => {
   obj.title = title;
   obj.description = description;
   obj.mode = mode;
+  obj.organizer = state.userId;
+  console.log(obj);
 
   return (
     <>
@@ -449,6 +454,7 @@ export default function multistep() {
                         price: obj.price,
                         tickets: obj.tickets,
                         domain: obj.domain,
+                        organizer: obj.organizer,
                         image: obj.eventBanner,
                         latitude: obj.lat,
                         longitude: obj.lng,

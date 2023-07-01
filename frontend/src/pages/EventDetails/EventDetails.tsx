@@ -17,9 +17,12 @@ import {
   List,
   ListItem,
 } from "@chakra-ui/react";
+import { ethers } from "ethers";
+import { useAuth } from "@polybase/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
 import { useState, useEffect } from "react";
+import ticketmint from "../../utils/techMintEventabi.json";
 
 export default function Simple() {
   const [event, setEvent] = useState({});
@@ -31,7 +34,7 @@ export default function Simple() {
   const [image, setImage] = useState("");
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
-
+  const { state } = useAuth();
   useEffect(() => {
     const eventId = window.location.pathname.split("/")[2];
     const getEvent = async () => {
@@ -53,6 +56,21 @@ export default function Simple() {
     };
     getEvent();
   }, [event.price, event.title, event.description, event.image]);
+
+  const rolloutTicket = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      "0xb3BCe2124d7ecA01aa484E4109B78E56d5aBF343",
+      ticketmint,
+      signer
+    );
+    const transaction = await contract.startTicketSale(
+      event._id,
+      event.tickets
+    );
+    console.log(transaction);
+  };
 
   const [url, setUrl] = useState("");
   return (
@@ -147,24 +165,42 @@ export default function Simple() {
             <Box></Box>
           </Stack>
 
-          <Button
-            rounded={"none"}
-            w={"md"}
-            ml={16}
-            size={"lg"}
-            py={"7"}
-            bg={useColorModeValue("gray.900", "gray.50")}
-            color={useColorModeValue("white", "gray.900")}
-            textTransform={"uppercase"}
-            _hover={{
-              transform: "translateY(2px)",
-              boxShadow: "lg",
-            }}
-          >
-            <a href={url} aria-label="Category">
-              Buy Ticket (₹{event.price})
-            </a>
-          </Button>
+          {event.organizer === state.userId ? (
+            <Button
+              rounded={"none"}
+              w={"md"}
+              ml={16}
+              size={"lg"}
+              py={"7"}
+              bg={useColorModeValue("gray.900", "gray.50")}
+              color={useColorModeValue("white", "gray.900")}
+              textTransform={"uppercase"}
+              _hover={{
+                transform: "translateY(2px)",
+                boxShadow: "lg",
+              }}
+              onClick={rolloutTicket}
+            >
+              Rollout Tickets
+            </Button>
+          ) : (
+            <Button
+              rounded={"none"}
+              w={"md"}
+              ml={16}
+              size={"lg"}
+              py={"7"}
+              bg={useColorModeValue("gray.900", "gray.50")}
+              color={useColorModeValue("white", "gray.900")}
+              textTransform={"uppercase"}
+              _hover={{
+                transform: "translateY(2px)",
+                boxShadow: "lg",
+              }}
+            >
+              Buy Ticket ₹{event.price}
+            </Button>
+          )}
         </Stack>
       </SimpleGrid>
     </Container>
