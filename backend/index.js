@@ -1,6 +1,9 @@
 require("dotenv").config();
 var cors = require("cors");
 const express = require("express");
+
+//routes
+const eventRoutes = require("./routes/event");
 const app = express();
 
 //middleware
@@ -12,6 +15,7 @@ const connectDB = require("./db/connect");
 
 app.use(express.json());
 app.use(cors());
+app.use("/api/events", eventRoutes);
 app.get("/api", (req, res) => {
   res.send("<h1>Hello World</h1>");
 });
