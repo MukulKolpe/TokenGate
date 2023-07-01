@@ -80,4 +80,17 @@ const createEvent = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { getEvents, getEventById, createEvent };
+const updateEventApproval = asyncHandler(async (req, res) => {
+  const event = await Event.findByIdAndUpdate(req.params.id, {
+    isApproved: true,
+    function(err, docs) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Updated User : ", docs);
+      }
+    },
+  });
+});
+
+module.exports = { getEvents, getEventById, createEvent, updateEventApproval };
