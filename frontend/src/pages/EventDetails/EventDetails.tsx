@@ -35,6 +35,10 @@ export default function Simple() {
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
   const { state } = useAuth();
+  const [tokenUri, setTokenUri] = useState(
+    "https://ipfs.io/ipfs/QmWJgUgGuNyqjVeEVZnF7WDijHQTmnp2pKvVgQg5PCFivU"
+  );
+
   useEffect(() => {
     const eventId = window.location.pathname.split("/")[2];
     const getEvent = async () => {
@@ -70,6 +74,21 @@ export default function Simple() {
       event.tickets
     );
     console.log(transaction);
+  };
+
+  const mintTicket = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      "0xb3BCe2124d7ecA01aa484E4109B78E56d5aBF343",
+      ticketmint,
+      signer
+    );
+    const transaction = await contract.safeMint(
+      state.userId,
+      tokenUri,
+      event._id
+    );
   };
 
   const [url, setUrl] = useState("");
@@ -197,6 +216,7 @@ export default function Simple() {
                 transform: "translateY(2px)",
                 boxShadow: "lg",
               }}
+              onClick={mintTicket}
             >
               Buy Ticket ₹{event.price}
             </Button>
