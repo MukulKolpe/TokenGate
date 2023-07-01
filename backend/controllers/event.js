@@ -33,6 +33,8 @@ const createEvent = asyncHandler(async (req, res) => {
     volunteersApplications,
     organizer,
     domain,
+    latitude,
+    longitude,
   } = req.body;
 
   const event = await Event.create({
@@ -52,6 +54,8 @@ const createEvent = asyncHandler(async (req, res) => {
     volunteersApplications,
     organizer,
     domain,
+    latitude,
+    longitude,
   });
 
   if (event) {
@@ -67,6 +71,8 @@ const createEvent = asyncHandler(async (req, res) => {
       price: event.price,
       tickets: event.tickets,
       domain: event.domain,
+      latitude: event.latitude,
+      longitude: event.longitude,
     });
   } else {
     res.status(400);

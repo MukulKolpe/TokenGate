@@ -10,12 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.7.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@react-google-maps/api": "^2.18.1",
     "framer-motion": "^10.12.18",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-file-base64": "^1.0.3",
     "react-icons": "^4.10.1",
     "react-router-dom": "^6.14.1"
   },
