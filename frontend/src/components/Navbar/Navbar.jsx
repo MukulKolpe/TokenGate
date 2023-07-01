@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   chakra,
   Box,
@@ -11,26 +11,25 @@ import {
   VStack,
   IconButton,
   CloseButton,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  Icon,
+  Avatar,
 } from "@chakra-ui/react";
 import { AiOutlineMenu } from "react-icons/ai";
-import { useAuth } from "@polybase/react";
-import { CgProfile } from "react-icons/cg";
-import Avatar from "avataaars";
-import { generateRandomAvatarOptions } from "../../utils/avatar";
-import { Link, useNavigate } from "react-router-dom";
+// import { useAuth } from "@arcana/auth-react";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
-  const { auth, state } = useAuth();
+  // const { isLoggedIn, connect, user } = useAuth();
   const bg = useColorModeValue("white", "gray.800");
   const mobileNav = useDisclosure();
-  const navigate = useNavigate();
-
+  //   const onConnectClick = async () => {
+  //     try {
+  //       await connect();
+  //       console.log(user);
+  //     } catch (err) {
+  //       console.log({ err });
+  //       // Handle error
+  //     }
+  //   };
   return (
     <React.Fragment>
       <chakra.header bg={bg} w="full" h="100px" px={{ base: 6, sm: 4 }} py={5}>
@@ -79,52 +78,13 @@ export default function NavBar() {
                 </Link>
               </chakra.a>
             </HStack>
-            {state == null ? (
-              <Button
-                display="flex"
-                flexDir="row"
-                variant={"solid"}
-                colorScheme={"teal"}
-                size={"sm"}
-                mr={4}
-                leftIcon={<Icon as={CgProfile} boxSize={6} />}
-                onClick={() => auth.signIn() && navigate("/")}
-              >
-                Sign In
+            {/* {!isLoggedIn ? (
+              <Button colorScheme="brand" size="sm" onClick={onConnectClick}>
+                Sign in
               </Button>
             ) : (
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  rounded={"full"}
-                  variant={"link"}
-                  cursor={"pointer"}
-                  minW={0}
-                >
-                  <Avatar
-                    size={"sm"}
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                    }}
-                    avatarStyle="Circle"
-                    {...generateRandomAvatarOptions()}
-                  />
-                </MenuButton>
-                <MenuList>
-                  <MenuItem>
-                    Welcome,{" "}
-                    {state.userId.slice(0, 4) + "..." + state.userId.slice(-4)}
-                  </MenuItem>
-                  <MenuDivider />
-                  <MenuItem as={Link} to="/profile">
-                    Profile
-                  </MenuItem>
-                  <MenuDivider />
-                  <MenuItem onClick={() => auth.signOut()}>Sign Out</MenuItem>
-                </MenuList>
-              </Menu>
-            )}
+              <Avatar size="sm" name={user?.name} src={user?.picture} />
+            )} */}
             <Box display={{ base: "inline-flex", md: "none" }}>
               <IconButton
                 display={{ base: "flex", md: "none" }}
