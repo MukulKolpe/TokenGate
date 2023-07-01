@@ -446,7 +446,6 @@ export default function multistep() {
                         mode: obj.mode,
                         location: obj.location,
                         date: obj.datetime,
-                        organizer: id,
                         price: obj.price,
                         tickets: obj.tickets,
                         domain: obj.domain,

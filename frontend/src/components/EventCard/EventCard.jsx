@@ -79,9 +79,9 @@ export default function EventCard({
               </Text>
             </Stack>
             <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
-              <Avatar src={organizer.image} alt={"Author"} />
+              {/* <Avatar src={organizer.image} alt={"Author"} /> */}
               <Stack direction={"column"} spacing={0} fontSize={"sm"}>
-                <Text fontWeight={600}>{organizer.name}</Text>
+                <Text fontWeight={600}>Soham Kayal</Text>
                 <Text color={"gray.500"}>Feb 08, 2021 </Text>
               </Stack>
               <Stack>

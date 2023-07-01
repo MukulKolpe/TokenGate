@@ -22,9 +22,7 @@ export default function AdminCard({
   mode,
   location,
   price,
-  attendees,
   tickets,
-  organizer,
   domain,
 }) {
   const Navigate = useNavigate();
@@ -34,20 +32,31 @@ export default function AdminCard({
   // }
 
   const approveEvent = async () => {
-    // const response = await fetch(
-    //   `http://localhost:5000/api/events/approval/${id}`,
-    //   {
-    //     method: "PUT",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       email: email,
-    //     }),
-    //   }
-    // );
-    // const data = await response.json();
-    // console.log(data);
+    const response = await fetch(
+      `http://localhost:5000/api/events/approval/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          title: title,
+          description: description,
+          isApproved: true,
+          time: time,
+          date: date,
+          image: image,
+          mode: mode,
+          location: location,
+          price: price,
+          tickets: tickets,
+          domain: domain,
+        }),
+      }
+    );
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
