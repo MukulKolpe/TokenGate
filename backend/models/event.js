@@ -26,6 +26,12 @@ const eventSchema = new mongoose.Schema({
     type: String,
     enum: ["Online", "In-Person"],
   },
+  latitude: {
+    type: Number,
+  },
+  longitude: {
+    type: Number,
+  },
   location: {
     type: String,
   },
