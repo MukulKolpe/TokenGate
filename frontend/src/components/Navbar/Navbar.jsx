@@ -42,11 +42,16 @@ export default function NavBar() {
               display="flex"
               alignItems="center"
             >
-              <VisuallyHidden>MLH x NEAR</VisuallyHidden>
+              <VisuallyHidden>TokenGate</VisuallyHidden>
             </chakra.a>
             <Link to="/">
-              <chakra.h3 fontSize="30px" fontWeight="0" ml="2" color="brand.00">
-                MLH x NEAR
+              <chakra.h3
+                fontSize="30px"
+                fontWeight="600"
+                ml="2"
+                color="brand.00"
+              >
+                TokenGate
               </chakra.h3>
             </Link>
           </Flex>
