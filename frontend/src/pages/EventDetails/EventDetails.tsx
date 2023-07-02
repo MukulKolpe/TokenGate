@@ -143,7 +143,9 @@ export default function Simple() {
             rounded={"md"}
             alt={"product image"}
             src={
-              "https://www.travelperk.com/wp-content/uploads/alexandre-pellaes-6vAjp0pscX0-unsplash-1-1-720x480.jpg"
+              event.image
+                ? event.image
+                : "https://www.travelperk.com/wp-content/uploads/alexandre-pellaes-6vAjp0pscX0-unsplash-1-1-720x480.jpg"
             }
             fit={"cover"}
             align={"center"}
