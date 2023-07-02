@@ -464,7 +464,7 @@ export default function multistep() {
                   console.log(events.json());
                   toast({
                     title: "Event Details Submitted.",
-                    description: "We've created your account for you.",
+                    description: "We will get back to you soon.",
                     status: "success",
                     duration: 3000,
                     isClosable: true,
