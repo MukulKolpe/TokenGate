@@ -8,6 +8,8 @@ Revolutionizing Ticketing Infrastructure. Secure your Experience. Tokenize your 
 
 - ReactJS
 - NodeJS
+- Typescript
+- Javascript
 - MongoDB
 - Ethersjs
 - Aurora Testnet
