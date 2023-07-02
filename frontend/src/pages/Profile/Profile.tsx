@@ -4,6 +4,7 @@ import ticketmint from "../../utils/techMintEventabi.json";
 import { ethers } from "ethers";
 import {
   Table,
+  Center,
   Thead,
   Tbody,
   Tfoot,
@@ -88,9 +89,13 @@ const Profile = () => {
   return (
     <div>
       {button ? (
-        <Button onClick={getTicketData} colorScheme="blue">
-          View All Tickets
-        </Button>
+        <>
+          <Center>
+            <Button onClick={getTicketData} colorScheme="blue">
+              View All Tickets
+            </Button>
+          </Center>
+        </>
       ) : (
         <TableContainer>
           <Heading noOfLines={1}>
