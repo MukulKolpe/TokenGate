@@ -105,7 +105,7 @@ const updateEventApproval = asyncHandler(async (req, res) => {
     <p><b>Congratulations🎉🎉!</b></p>
     <p>We are thrilled to inform you that, the event you registered has been approved.</p>
     <p>We look forward to an outstanding event!</p>
-    <p>Navigate to explore page to rollout tickets</p>
+    <p>Navigate to explore page to rollout the tickets.</p>
     <p>If you have any further questions or need assistance, please feel free to contact us. We look forward to a fantastic event!</p>
     <br>
     <p>Best regards,</p>
