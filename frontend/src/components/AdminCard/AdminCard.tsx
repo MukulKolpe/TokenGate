@@ -68,7 +68,7 @@ export default function AdminCard({
       {!isApproved && (
         <Center py={6}>
           <Box
-            maxW={"445px"}
+            maxW={"350px"}
             w={"full"}
             bg={useColorModeValue("white", "gray.900")}
             boxShadow={"2xl"}
@@ -121,7 +121,9 @@ export default function AdminCard({
               />
               <Stack direction={"column"} spacing={0} fontSize={"sm"}>
                 <Text fontWeight={600}>
-                  {organizer.slice(0, 4) + "..." + organizer.slice(-4)}
+                  {organizer
+                    ? organizer.slice(0, 4) + "..." + organizer.slice(-4)
+                    : "Anonymous"}
                 </Text>
                 <Text fontWeight={600} color={"gray.500"}>
                   {date.substring(0, 10)}

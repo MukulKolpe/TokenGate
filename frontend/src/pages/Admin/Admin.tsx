@@ -97,7 +97,7 @@ const Admin = () => {
           </Stack>
         </Flex>
       ) : (
-        <Grid templateColumns="repeat(4, 1fr)" gap={10} minW={100} m={8}>
+        <Grid templateColumns="repeat(3, 1fr)" gap={2} minW={100} m={8}>
           {events.map((event) => (
             <AdminCard
               key={event._id}
