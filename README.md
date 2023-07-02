@@ -1,10 +1,10 @@
 # TokenGate🚀
 
-# Introduction 🔥
+## Introduction 🔥
 
 Revolutionizing Ticketing Infrastructure. Secure your Experience. Tokenize your Journey. Empower your Possibilities!
 
-TechStack Used 🎯
+## TechStack Used 🎯
 
 - ReactJS
 - NodeJS
@@ -22,7 +22,7 @@ TechStack Used 🎯
 - React Places Autocomplete
 
 
-# Deployed Contract address:-
+## Deployed Contract address:-
 
 ```
 0xb3BCe2124d7ecA01aa484E4109B78E56d5aBF343
