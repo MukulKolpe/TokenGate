@@ -37,6 +37,7 @@ const obj = {
   location: "",
   tickets: 0,
   organizer: "",
+  organizer_email: "",
   prize: 0,
   lat: 0,
   lng: 0,
@@ -323,9 +324,11 @@ const Form2 = () => {
 const Form3 = () => {
   const [tickets, setTickets] = useState(0);
   const [price, setPrice] = useState(0);
+  const [email, setEmail] = useState("");
 
   obj.tickets = parseInt(tickets);
   obj.price = parseInt(price);
+  obj.organizer_email = email;
 
   console.log(obj);
 
@@ -365,6 +368,18 @@ const Form3 = () => {
             <CheckIcon color="green.500" />
           </InputRightElement>
         </InputGroup>
+      </FormControl>
+      <FormControl mt="2%" isRequired>
+        <FormLabel htmlFor="email" fontWeight={"normal"}>
+          Enter your email id
+        </FormLabel>
+
+        <Input
+          id="email"
+          placeholder="No. of Tickets..."
+          min={1}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </FormControl>
     </>
   );
@@ -457,6 +472,7 @@ export default function multistep() {
                         organizer: obj.organizer,
                         image: obj.eventBanner,
                         latitude: obj.lat,
+                        organizer_email: obj.organizer_email,
                         longitude: obj.lng,
                       }),
                     }

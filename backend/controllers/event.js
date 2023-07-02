@@ -1,5 +1,6 @@
 const Event = require("../models/event");
 const asyncHandler = require("express-async-handler");
+let nodemailer = require("nodemailer");
 
 const getEvents = async (req, res) => {
   res.status(200).json(await Event.find());
@@ -84,13 +85,48 @@ const createEvent = asyncHandler(async (req, res) => {
 });
 
 const updateEventApproval = asyncHandler(async (req, res) => {
+  const email = req.body.email;
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "2020.sarvesh.limaye@ves.ac.in",
+      pass: process.env.password,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  let mailOptions = {
+    from: "2020.sarvesh.limaye@ves.ac.in",
+    to: email,
+    subject: "[MLH X NEAR] Event Registration Approved",
+    html: `
+    <p><b>Congratulations🎉🎉!</b></p>
+    <p>We are thrilled to inform you that, the event you registered has been approved.</p>
+    <p>We look forward to an outstanding event!</p>
+    <p>Navigate to explore page to rollout tickets</p>
+    <p>If you have any further questions or need assistance, please feel free to contact us. We look forward to a fantastic event!</p>
+    <br>
+    <p>Best regards,</p>
+    <p>[MLH X NEAR] Event Team</p>
+    `,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent");
+    }
+  });
   const event = await Event.findByIdAndUpdate(req.params.id, {
     isApproved: true,
     function(err, docs) {
       if (err) {
         console.log(err);
       } else {
-        console.log("Updated User : ", docs);
+        console.log("Updated Event : ", docs);
       }
     },
   });
