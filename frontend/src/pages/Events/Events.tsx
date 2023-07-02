@@ -17,7 +17,7 @@ const Events = () => {
 
   return (
     <div>
-      <Grid templateColumns="repeat(3, 1fr)" gap={4} minW={100} m={8}>
+      <Grid templateColumns="repeat(4, 1fr)" gap={10} minW={100} m={8}>
         {events.map((event) => (
           <EventCard
             key={event._id}

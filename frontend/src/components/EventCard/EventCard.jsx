@@ -22,12 +22,7 @@ export default function EventCard({
   mode,
   location,
   price,
-  speakerApplications,
-  speakers,
-  attendees,
-  volunteers,
   tickets,
-  volunteersApplications,
   organizer,
   domain,
 }) {
@@ -79,10 +74,10 @@ export default function EventCard({
               </Text>
             </Stack>
             <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
-              {/* <Avatar src={organizer.image} alt={"Author"} /> */}
               <Stack direction={"column"} spacing={0} fontSize={"sm"}>
-                <Text fontWeight={600}>Soham Kayal</Text>
-                <Text color={"gray.500"}>Feb 08, 2021 </Text>
+                <Text fontWeight={600} color={"gray.500"}>
+                  {date.substring(0, 10)}
+                </Text>
               </Stack>
               <Stack>
                 <Text ml={8} color={"green.400"} px={10} fontWeight={"bold"}>
