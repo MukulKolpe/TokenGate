@@ -9,9 +9,11 @@ import {
   Stack,
   useColorModeValue,
   Grid,
+  Image,
 } from "@chakra-ui/react";
 
 import AdminCard from "../../components/AdminCard/AdminCard";
+import LockSVG from "../../assets/lock-svgrepo-com.svg";
 
 const Admin = () => {
   const [events, setEvents] = useState([]);
@@ -39,11 +41,25 @@ const Admin = () => {
     <div>
       {!checked ? (
         <Flex
-          minH={"100vh"}
           align={"center"}
           justify={"center"}
           bg={useColorModeValue("gray.50", "gray.800")}
+          flexDir={"row"}
+          justifyContent={"space-evenly"}
         >
+          <Stack>
+            <Stack
+              spacing={4}
+              w={"full"}
+              maxW={"md"}
+              rounded={"xl"}
+              boxShadow={"lg"}
+              p={6}
+              my={12}
+            >
+              <Image src={LockSVG} width="250px"></Image>
+            </Stack>
+          </Stack>
           <Stack
             spacing={4}
             w={"full"}
