@@ -3,6 +3,7 @@ import Admin from "./pages/Admin/Admin";
 import Events from "./pages/Events/Events";
 import AddEvent from "./pages/AddEvent/AddEvent";
 import EventDetails from "./pages/EventDetails/EventDetails";
+import Profile from "./pages/Profile/Profile";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/explore" element={<Events />} />
                 <Route path="/add-event" element={<AddEvent />} />
                 <Route path="/explore/:id" element={<EventDetails />} />
+                <Route path="/profile" element={<Profile />} />
               </Routes>
               <Footer />
             </Router>

@@ -83,7 +83,7 @@ export default function Simple() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
-      "0xb3BCe2124d7ecA01aa484E4109B78E56d5aBF343",
+      "0x57453F282818272fAA71cFb6ca3e685a38CeC6C4",
       ticketmint,
       signer
     );
@@ -98,7 +98,7 @@ export default function Simple() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
-      "0xb3BCe2124d7ecA01aa484E4109B78E56d5aBF343",
+      "0x57453F282818272fAA71cFb6ca3e685a38CeC6C4",
       ticketmint,
       signer
     );
@@ -107,6 +107,7 @@ export default function Simple() {
       tokenUri,
       event._id
     );
+    console.log(transaction);
 
     if (transaction.data.length > 0) {
       setHaveTicket(true);
@@ -118,7 +119,7 @@ export default function Simple() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
-      "0xb3BCe2124d7ecA01aa484E4109B78E56d5aBF343",
+      "0x57453F282818272fAA71cFb6ca3e685a38CeC6C4",
       ticketmint,
       signer
     );
