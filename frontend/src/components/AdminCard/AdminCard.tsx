@@ -23,6 +23,7 @@ export default function AdminCard({
   location,
   price,
   tickets,
+  organizer_email,
   domain,
 }) {
   const Navigate = useNavigate();
@@ -51,6 +52,7 @@ export default function AdminCard({
           location: location,
           price: price,
           tickets: tickets,
+          email: organizer_email,
           domain: domain,
         }),
       }
