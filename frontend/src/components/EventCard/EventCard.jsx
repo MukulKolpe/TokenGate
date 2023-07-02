@@ -4,11 +4,12 @@ import {
   Heading,
   Text,
   Stack,
-  Avatar,
   useColorModeValue,
   Image,
   Button,
 } from "@chakra-ui/react";
+import { generateRandomAvatarOptions } from "../../utils/avatar";
+import Avatar from "avataaars";
 import { useNavigate } from "react-router-dom";
 
 export default function EventCard({
@@ -74,7 +75,19 @@ export default function EventCard({
               </Text>
             </Stack>
             <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
+              <Avatar
+                size={"sm"}
+                style={{
+                  width: "40px",
+                  height: "40px",
+                }}
+                avatarStyle="Circle"
+                {...generateRandomAvatarOptions()}
+              />
               <Stack direction={"column"} spacing={0} fontSize={"sm"}>
+                <Text fontWeight={600}>
+                  {organizer.slice(0, 4) + "..." + organizer.slice(-4)}
+                </Text>
                 <Text fontWeight={600} color={"gray.500"}>
                   {date.substring(0, 10)}
                 </Text>
