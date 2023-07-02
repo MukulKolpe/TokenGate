@@ -32,6 +32,7 @@ const Events = () => {
             location={event.location}
             price={event.price}
             tickets={event.tickets}
+            organizer={event.organizer}
             domain={event.domain}
           />
         ))}

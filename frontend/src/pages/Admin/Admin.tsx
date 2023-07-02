@@ -112,6 +112,7 @@ const Admin = () => {
               location={event.location}
               price={event.price}
               tickets={event.tickets}
+              organizer={event.organizer}
               organizer_email={event.organizer_email}
               domain={event.domain}
             />
