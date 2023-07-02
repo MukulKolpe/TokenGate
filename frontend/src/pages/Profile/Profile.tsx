@@ -102,7 +102,7 @@ const Profile = () => {
             Welcome {state.userId.slice(0, 4) + "..." + state.userId.slice(-4)}!
             You have {totalTickets} tickets!
           </Heading>
-          <Table variant="simple">
+          <Table variant="simple" mt="10px">
             <TableCaption>All of your Tickets Minted as NFTs!!</TableCaption>
             <Thead>
               <Tr>

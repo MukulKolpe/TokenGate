@@ -68,7 +68,7 @@ export default function AdminCard({
       {!isApproved && (
         <Center py={6}>
           <Box
-            maxW={"350px"}
+            maxW={"380px"}
             w={"full"}
             bg={useColorModeValue("white", "gray.900")}
             boxShadow={"2xl"}
