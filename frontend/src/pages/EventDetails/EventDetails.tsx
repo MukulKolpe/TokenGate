@@ -43,9 +43,12 @@ export default function Simple() {
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
   const { state } = useAuth();
-  const [tokenUri, setTokenUri] = useState("");
+  const [tokenUri, setTokenUri] = useState(
+    "https://ipfs.io/ipfs/QmWJgUgGuNyqjVeEVZnF7WDijHQTmnp2pKvVgQg5PCFivU"
+  );
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [haveTicket, setHaveTicket] = useState(false);
+  const [remainingSeats, setRemainingSeats] = useState(0);
 
   useEffect(() => {
     const eventId = window.location.pathname.split("/")[2];
@@ -67,7 +70,14 @@ export default function Simple() {
       console.log(data.latitude, data.longitude);
     };
     getEvent();
-  }, [event.price, event.title, event.description, event.image]);
+    getRemainingTickets();
+  }, [
+    event.price,
+    event.title,
+    event.description,
+    event.image,
+    remainingSeats,
+  ]);
 
   const rolloutTicket = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -101,6 +111,23 @@ export default function Simple() {
     if (transaction.data.length > 0) {
       setHaveTicket(true);
     }
+    getRemainingTickets();
+  };
+
+  const getRemainingTickets = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      "0xb3BCe2124d7ecA01aa484E4109B78E56d5aBF343",
+      ticketmint,
+      signer
+    );
+    const transaction = await contract.getRemainingSeats(event._id);
+    console.log(transaction);
+    const remainingTickets = transaction.toString();
+    console.log(remainingTickets);
+    setRemainingSeats(remainingTickets);
+    return remainingTickets;
   };
 
   const [url, setUrl] = useState("");
@@ -184,12 +211,15 @@ export default function Simple() {
               <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                 <List spacing={2}>
                   <ListItem>Location</ListItem>
-                  <ListItem>Date</ListItem> <ListItem>Mode</ListItem>
+                  <ListItem>Date & Time</ListItem> <ListItem>Mode</ListItem>
+                  <ListItem>Tickets Left</ListItem>
                 </List>
                 <List spacing={2}>
                   <ListItem>{event.location}</ListItem>
-                  <ListItem>{event.date}</ListItem>
+                  // give space between date and time by splitting the string
+                  <ListItem>{event.date?.replace("T", " ")}</ListItem>
                   <ListItem>{event.mode}</ListItem>
+                  <ListItem>{remainingSeats}</ListItem>
                 </List>
               </SimpleGrid>
             </Box>
