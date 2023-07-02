@@ -77,7 +77,9 @@ export default function AdminCard({
             <Box h={"210px"} bg={"gray.100"} mt={-6} mx={-6} mb={6}>
               <Image
                 src={
-                  "https://www.travelperk.com/wp-content/uploads/alexandre-pellaes-6vAjp0pscX0-unsplash-1-1-720x480.jpg"
+                  image
+                    ? image
+                    : "https://www.travelperk.com/wp-content/uploads/alexandre-pellaes-6vAjp0pscX0-unsplash-1-1-720x480.jpg"
                 }
                 layout={"fit"}
                 h={"210px"}
@@ -106,10 +108,10 @@ export default function AdminCard({
               </Text>
             </Stack>
             <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
-              {/* <Avatar src={organizer.image} alt={"Author"} /> */}
               <Stack direction={"column"} spacing={0} fontSize={"sm"}>
-                <Text fontWeight={600}>Soham Kayal</Text>
-                <Text color={"gray.500"}>Feb 08, 2021 </Text>
+                <Text fontWeight={600} color={"gray.500"}>
+                  {date.substring(0, 10)}
+                </Text>
               </Stack>
               <Stack>
                 <Text ml={8} color={"green.400"} px={10} fontWeight={"bold"}>
