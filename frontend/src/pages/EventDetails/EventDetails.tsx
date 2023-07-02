@@ -16,8 +16,16 @@ import {
   Link,
   List,
   ListItem,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { ethers } from "ethers";
+import { Transaction, ethers } from "ethers";
 import { useAuth } from "@polybase/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { MdLocalShipping } from "react-icons/md";
@@ -35,9 +43,9 @@ export default function Simple() {
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
   const { state } = useAuth();
-  const [tokenUri, setTokenUri] = useState(
-    "https://ipfs.io/ipfs/QmWJgUgGuNyqjVeEVZnF7WDijHQTmnp2pKvVgQg5PCFivU"
-  );
+  const [tokenUri, setTokenUri] = useState("");
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [haveTicket, setHaveTicket] = useState(false);
 
   useEffect(() => {
     const eventId = window.location.pathname.split("/")[2];
@@ -89,6 +97,10 @@ export default function Simple() {
       tokenUri,
       event._id
     );
+
+    if (transaction.data.length > 0) {
+      setHaveTicket(true);
+    }
   };
 
   const [url, setUrl] = useState("");
@@ -202,7 +214,7 @@ export default function Simple() {
             >
               Rollout Tickets
             </Button>
-          ) : (
+          ) : !haveTicket ? (
             <Button
               rounded={"none"}
               w={"md"}
@@ -220,6 +232,57 @@ export default function Simple() {
             >
               Buy Ticket ₹{event.price}
             </Button>
+          ) : (
+            <div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Button
+                  rounded={"none"}
+                  w={"md"}
+                  ml={16}
+                  size={"lg"}
+                  py={"7"}
+                  bg={useColorModeValue("gray.900", "gray.50")}
+                  color={useColorModeValue("white", "gray.900")}
+                  textTransform={"uppercase"}
+                  _hover={{
+                    transform: "translateY(2px)",
+                    boxShadow: "lg",
+                  }}
+                  onClick={onOpen}
+                >
+                  View your Ticket
+                </Button>
+                <span style={{ marginTop: "10px" }}>You are already in!</span>
+              </div>
+
+              <Modal
+                blockScrollOnMount={false}
+                isOpen={isOpen}
+                onClose={onClose}
+              >
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Ticket for event #{event._id}</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <Image src="https://ipfs.io/ipfs/Qme1E49DEyeGRmT2CDeSCZRcNiLyeAQiDq7SAxDHACiivi/" />
+                  </ModalBody>
+
+                  <ModalFooter>
+                    <Button colorScheme="blue" mr={3} onClick={onClose}>
+                      Close
+                    </Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+            </div>
           )}
         </Stack>
       </SimpleGrid>
